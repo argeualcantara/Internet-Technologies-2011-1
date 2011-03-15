@@ -33,7 +33,7 @@ private static TesteBD instance;
 
 			
 			while (rs.next()) {
-				teste.setDesc(rs.getString("DESCR"));
+				teste.setDesc(rs.getString("DESC"));
 				teste.setId(rs.getInt("ID"));
 				
 			}
