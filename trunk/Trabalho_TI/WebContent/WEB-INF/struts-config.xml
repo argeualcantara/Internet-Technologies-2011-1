@@ -22,9 +22,9 @@
 		
 		<action path="/ErroLogin" forward="/pages/erroLogin.jsp" />
 		
-		<action path="/Produtos" type="action.ProdutoAction" name="produtoForm"
+		<action path="/Produtos" type="action.ProdutoAction" name="vendedorForm"
 			scope="request" parameter="method" validate="false" >
-			<forward name="cadastro" path="/pages/cadastroProduto.jsp"></forward>
+			<forward name="produtos" path="/pages/produtos.jsp"></forward>
 		</action>
 		
 		<action path="/CadastroVendedor" forward="/pages/cadastroVendedor.jsp" />
@@ -37,7 +37,7 @@
 		<action path="/VendedorLogin" type="action.VendedorAction" name="vendedorForm"
 		scope="request" parameter="method" validate="false">
 			<forward name="valido" path="/pages/index.jsp" />
-			
+			<forward name="erro" path="/pages/Welcome.jsp" />
 		</action>
 		
 		<action path="/Cadastro" type="action.VendedorAction" name="vendedorForm"
