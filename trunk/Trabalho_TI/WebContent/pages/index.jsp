@@ -17,16 +17,31 @@
 </head>
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
-	<a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
 	<table align="right" cellpadding="2">
 		<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-			<c:redirect url="/Index.do"></c:redirect>
+			<c:if test="${metodo=='deslogar'}">
+						Você saiu de sua conta.
+				</c:if>
+			<tr>
+				<td align="right">Usuário:</td>
+				<td align="right"><html:text property="login" />
+			</tr>
+			<tr>
+				<td align="right">Senha:</td>
+				<td align="right"><html:password property="senha" />
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+				<div align="right"><a onclick="" href="CadastroVendedor.do">Registar</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <html:submit
+					value="Entrar" /></div>
+				</td>
+			</tr>
 		</c:if>
 		<c:if test="${sessionScope.login != null}">
-
 			<tr>
 				<td>Você está logado como</td>
-				<td>${login}</td>
+				<td>${sessionScope.login}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -38,44 +53,13 @@
 		</c:if>
 	</table>
 </html:form>
-<div style="padding-top: 200px;">
-<center><html:form action="Produtos.do?method=inserir">
-	<table align="center" cellpadding="2">
-		<tr>
-			<td>Produto cadastrado por</td>
-			<td>${sessionScope.login}</td>
-		</tr>
-		<tr>
-			<td>Nome:</td>
-			<td><html:text styleId="nome" property="nome"></html:text></td>
-		</tr>
-		<tr>
-			<td>Descricao:</td>
-			<td><html:textarea property="descricao" cols="20"></html:textarea>
-			</td>
-		</tr>
-		<tr>
-			<td>Valor Unitário:</td>
-			<td><html:text styleId="valor" property="valor_unitario"></html:text>
-			</td>
-		</tr>
-		<tr>
-			<td>Área:</td>
-			<td><html:select property="cod_area">
-				<c:forEach var="area" items="${listaArea}">
-					<html:option value="${area.id_area}">${area.descricao}</html:option>
-				</c:forEach>
-			</html:select></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-			<div align="right"><html:submit styleId="botao"
-				value="Cadastrar" /></div>
-			</td>
-		</tr>
-	</table>
-</html:form></center>
-</div>
-
+<html:form action="/TesteBusca.do?method=buscar">
+	<div style="padding-top: 200px;">
+	<center><html:text property="id" /><html:submit
+		value="Buscar" />
+	<h1><bean:write name="testeForm" property="desc" /></h1>
+	</center>
+	</div>
+</html:form>
 </body>
 </html>

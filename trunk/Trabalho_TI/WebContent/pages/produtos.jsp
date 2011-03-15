@@ -17,10 +17,24 @@
 </head>
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
-	<a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
+<a  href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
 	<table align="right" cellpadding="2">
 		<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-			<c:redirect url="/Index.do"></c:redirect>
+			<tr>
+				<td>Usuário:</td>
+				<td><html:text property="login" />
+			</tr>
+			<tr>
+				<td>Senha:</td>
+				<td><html:password property="senha" />
+			</tr>
+			<tr>
+
+				<td colspan="2">
+				<div align="left"><a onclick="" href="CadastroVendedor.do">Registar</a>
+				<html:submit value="Entrar" /></div>
+				</td>
+			</tr>
 		</c:if>
 		<c:if test="${sessionScope.login != null}">
 
@@ -33,48 +47,19 @@
 				<div align="left"><a onclick=""
 					href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
 				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a></div>
+
 				</td>
 			</tr>
+
 		</c:if>
 	</table>
 </html:form>
 <div style="padding-top: 200px;">
-<center><html:form action="Produtos.do?method=inserir">
-	<table align="center" cellpadding="2">
-		<tr>
-			<td>Produto cadastrado por</td>
-			<td>${sessionScope.login}</td>
-		</tr>
-		<tr>
-			<td>Nome:</td>
-			<td><html:text styleId="nome" property="nome"></html:text></td>
-		</tr>
-		<tr>
-			<td>Descricao:</td>
-			<td><html:textarea property="descricao" cols="20"></html:textarea>
-			</td>
-		</tr>
-		<tr>
-			<td>Valor Unitário:</td>
-			<td><html:text styleId="valor" property="valor_unitario"></html:text>
-			</td>
-		</tr>
-		<tr>
-			<td>Área:</td>
-			<td><html:select property="cod_area">
-				<c:forEach var="area" items="${listaArea}">
-					<html:option value="${area.id_area}">${area.descricao}</html:option>
-				</c:forEach>
-			</html:select></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-			<div align="right"><html:submit styleId="botao"
-				value="Cadastrar" /></div>
-			</td>
-		</tr>
-	</table>
-</html:form></center>
+<center>
+Buscar Produtos<br />
+<a onclick="" href="http://localhost:8080/Trabalho_TI/Produtos.do?method=carregar">Inserir Produtos</a><br />
+
+</center>
 </div>
 
 </body>
