@@ -12,46 +12,51 @@
 	vertical-align: middle;
 }
 </style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
-	<table align="right" cellpadding="2">
-		<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-			<c:if test="${metodo=='deslogar'}">
+	<c:if test="${login == null || login == ''}">
+				<c:if test="${metodo=='deslogar'}">
 						Você saiu de sua conta.
 				</c:if>
+		<table align="right" cellpadding="2">
 			<tr>
 				<td align="right">Usuário:</td>
 				<td align="right"><html:text property="login" />
 			</tr>
 			<tr>
-				<td align="right">Senha:</td>
-				<td align="right"><html:password property="senha" />
+				<td  align="right">Senha:</td>
+				<td  align="right"><html:password property="senha" />
 			</tr>
-			<tr>
+			<tr >
 				<td colspan="2" align="right">
 				<div align="right"><a onclick="" href="CadastroVendedor.do">Registar</a>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <html:submit
-					value="Entrar" /></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<html:submit value="Entrar" /></div>
 				</td>
 			</tr>
-		</c:if>
-		<c:if test="${sessionScope.login != null}">
+		</table>
+	</c:if>
+	<c:if test="${login != null}">
+		<table align="right" cellpadding="2">
 			<tr>
 				<td>Você está logado como</td>
-				<td>${sessionScope.login}</td>
+				<td>${login}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-				<div align="left"><a onclick=""
-					href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
-				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a></div>
+					<div align="left">
+						<a onclick="" href="http://localhost:8080/Trabalho_TI/Produtos.do?method=sessao">Produtos</a>
+						<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a>
+					</div>
+					
 				</td>
 			</tr>
-		</c:if>
-	</table>
+		</table>
+	</c:if>
 </html:form>
 <html:form action="/TesteBusca.do?method=buscar">
 	<div style="padding-top: 200px;">

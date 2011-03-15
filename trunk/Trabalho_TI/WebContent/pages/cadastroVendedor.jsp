@@ -10,23 +10,18 @@
 <head>
 <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
 <LINK rel="stylesheet" href="css/estilo.css" type="text/css">
-<style type="text/css">
-.tableAlign {
-	vertical-align: middle;
-}
-</style>
+
 <script type="text/javascript" src="js/funcoes.js">
 
 </script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
 <a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
-<div style="padding-top: 200px;">
-<center>
 <html:form action="Cadastro.do?method=cadastrar">
-	<table align="right" cellpadding="2">
+	<table cellpadding="2" align="center" style="padding-top: 200px;">
 		<tr>
 			<td>
 				Login:
@@ -77,7 +72,6 @@
 		</tr>
 	</table>
 </html:form>
-</center>
-</div>
+
 </body>
 </html>
