@@ -14,7 +14,7 @@
 	<center>
 	
 	<h1>ERRO!</h1>
-	<h3>Login e/ou senha inválidos</h3>
+	<h3>Você precisa digitar um login e uma senha</h3>
 	Para se registrar clique <a onclick="" href="CadastroVendedor.do">aqui</a>.
 				
 	</center>
