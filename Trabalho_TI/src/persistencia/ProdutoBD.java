@@ -24,7 +24,7 @@ private static ProdutoBD instance;
 	
 	public void inserir(final Produto produto) {
 		try {
-			String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO, COD_AREA, VALOR_UNITARIO, LOGIN) VALUES (?,?)";
+			String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO, COD_AREA, VALOR_UNITARIO, LOGIN, QUANTIDADE) VALUES (?,?,?,?,?,?)";
 
 			Connection con = null;
 			PreparedStatement st = null;
@@ -35,8 +35,8 @@ private static ProdutoBD instance;
 			st.setString(2, produto.getDescricao());
 			st.setInt(3, produto.getCod_area());
 			st.setDouble(4, produto.getValor_unitario());
-			st.setString(5, produto.getNome());
-			st.setString(6, produto.getLogin());
+			st.setString(5, produto.getLogin());
+			st.setInt(6, produto.getQuantidade());
 			st.executeUpdate();
 			BD.closeCon();
 		} catch (SQLException e) {
