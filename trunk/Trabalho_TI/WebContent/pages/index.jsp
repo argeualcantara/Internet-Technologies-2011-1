@@ -49,7 +49,7 @@
 			<tr>
 				<td colspan="2">
 					<div align="left">
-						<a onclick="" href="http://localhost:8080/Trabalho_TI/Produtos.do?method=sessao">Produtos</a>
+						<a onclick="" href="http://localhost:8080/Trabalho_TI/pages/produtos">Produtos</a>
 						<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a>
 					</div>
 					

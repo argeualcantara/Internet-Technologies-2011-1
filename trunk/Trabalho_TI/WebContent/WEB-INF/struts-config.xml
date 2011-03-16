@@ -22,9 +22,9 @@
 		
 		<action path="/ErroLogin" forward="/pages/erroLogin.jsp" />
 		
-		<action path="/Produtos" type="action.ProdutoAction" name="vendedorForm"
+		<action path="/Produtos" type="action.ProdutoAction" name="produtoForm"
 			scope="request" parameter="method" validate="false" >
-			<forward name="produtos" path="/pages/produtos.jsp"></forward>
+			<forward name="carregar" path="/pages/cadastroProduto.jsp"></forward>
 		</action>
 		
 		<action path="/CadastroVendedor" forward="/pages/cadastroVendedor.jsp" />
