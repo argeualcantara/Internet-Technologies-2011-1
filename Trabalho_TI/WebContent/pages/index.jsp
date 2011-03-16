@@ -18,7 +18,7 @@
 </head>
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
-	<c:if test="${login == null || login == ''}">
+	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
 				<c:if test="${metodo=='deslogar'}">
 						Você saiu de sua conta.
 				</c:if>
@@ -40,7 +40,7 @@
 			</tr>
 		</table>
 	</c:if>
-	<c:if test="${login != null}">
+	<c:if test="${sessionScope.login != null}">
 		<table align="right" cellpadding="2">
 			<tr>
 				<td>Você está logado como</td>
