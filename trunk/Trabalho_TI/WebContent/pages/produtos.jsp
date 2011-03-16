@@ -42,7 +42,7 @@
 	<center>
 	
 	Buscar Produtos<br/>
-	<a onclick="" href="Produtos.do?method=carregar">Produtos</a><br/>
+	<a onclick="" href="../Produtos.do?method=carregar">Inserir Produtos</a><br/>
 		
 	</center>
 	</div>

@@ -27,7 +27,7 @@
 		<table align="right" cellpadding="2">
 			<tr>
 				<td>Você está logado como</td>
-				<td>${login}</td>
+				<td>${sessionScope.login}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -41,21 +41,47 @@
 	</c:if>
 </html:form>
 <div style="padding-top: 200px;">
-<center>
-<table cellpadding="2" align="center" style="padding-top: 200px;">
-	<tr>
-		<td>Login:</td>
-		<td><html:text styleId="login" property="login"></html:text></td>
-		<td><c:if test="${vendedorForm.login==''}">
-			<div align="left" id="msg" style="color: red; visibility: visible;">
-			Login Existente ou Inválido</div>
-		</c:if></td>
-	</tr>
-
-</table>
-
-</center>
+<center><html:form action="Produtos.do?method=inserir">
+	<table cellpadding="2" align="center" style="padding-top: 200px;">
+		<tr>
+			<td colspan="2">Produto inserido por ${sessionScope.login}</td>
+		</tr>
+		<!-- INSERT INTO PRODUTO (NOME, DESCRICAO, COD_AREA, VALOR_UNITARIO, LOGIN) VALUES (?,?)";  -->
+		<tr>
+			<td>Nome:</td>
+			<td><html:text property="nome"></html:text></td>
+		</tr>
+		<tr>
+			<td>Descricao:</td>
+			<td><html:textarea property="descricao"></html:textarea></td>
+		</tr>
+		<tr>
+			<td>Valor Unitário:</td>
+			<td><html:text property="valor_unitario"></html:text></td>
+		</tr>
+		<tr>
+			<td>Quantidade:</td>
+			<td><html:text property="quantidade"></html:text></td>
+		</tr>
+		<tr>
+			<td>Área:</td>
+			<td>
+			<html:select property="cod_area">
+				<html:option value="" disabled="true"> Selecione uma área</html:option>
+				<html:options collection="listaArea" property="id_area"
+					labelProperty="descricao" />
+			</html:select></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<div align="right"><html:submit styleId="botao"
+				value="Inserir" /></div>
+			</td>
+		</tr>
+	</table>
+</html:form></center>
 </div>
+
 
 </body>
 </html>
