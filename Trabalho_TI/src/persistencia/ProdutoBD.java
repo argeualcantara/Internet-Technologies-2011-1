@@ -3,6 +3,11 @@ package persistencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import model.Area;
 
 import model.Produto;
 
@@ -16,13 +21,6 @@ private static ProdutoBD instance;
 		}
 		return instance;
 	}
-	
-//	private int cod_produto;
-//	private String nome;
-//	private String descricao;
-//	private int cod_area;
-//	private int quantidade;
-//	private double valor_unitario;
 	
 	public void inserir(final Produto produto) {
 		try {
@@ -46,4 +44,30 @@ private static ProdutoBD instance;
 		}
 	}
 	
+	public List<Area> listarAreas(){
+		List<Area> list = new ArrayList<Area>();
+		
+		try {
+			String sql = "SELECT * FROM AREA";
+
+			Connection con = null;
+			Statement st = null;
+			ResultSet rs = null;
+
+			con = BD.getCon();
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				int id_area = rs.getInt("id_area");
+				String descricao = rs.getString("descricao");
+				list.add(new Area(id_area, descricao));
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 }
