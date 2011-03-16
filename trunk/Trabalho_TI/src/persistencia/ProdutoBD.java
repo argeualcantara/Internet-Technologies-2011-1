@@ -24,7 +24,7 @@ private static ProdutoBD instance;
 	
 	public void inserir(final Produto produto) {
 		try {
-			String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO, COD_AREA, VALOR_UNITARIO, LOGIN, QUANTIDADE) VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO, COD_AREA, VALOR_UNITARIO, LOGIN, QUANTIDADE, QUANTIDADE_VENDIDA) VALUES (?,?,?,?,?,?,?)";
 
 			Connection con = null;
 			PreparedStatement st = null;
@@ -37,6 +37,49 @@ private static ProdutoBD instance;
 			st.setDouble(4, produto.getValor_unitario());
 			st.setString(5, produto.getLogin());
 			st.setInt(6, produto.getQuantidade());
+			st.setInt(7, 0);
+			st.executeUpdate();
+			BD.closeCon();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void mudarEstoque(final Produto produto, int quantidade){
+		try {
+			String sql = "UPDATE PRODUTO SET QUANTIDADE = ? WHERE COD_PRODUTO = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+
+			quantidade = produto.getQuantidade() + quantidade;
+			
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setInt(1, quantidade);
+			st.setInt(2, produto.getCod_produto());
+			st.executeUpdate();
+			BD.closeCon();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void vender(final Produto produto, int quantidade){
+		try {
+			String sql = "UPDATE PRODUTO SET QUANTIDADE = ?, QUANTIDADE_VENDIDA = ? WHERE COD_PRODUTO = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+
+			quantidade = produto.getQuantidade() - quantidade;
+			int quantidade_vendida = produto.getQuantidade_vendida() + quantidade;
+			
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setInt(1, quantidade);
+			st.setInt(2, quantidade_vendida);
+			st.setInt(3, produto.getCod_produto());
 			st.executeUpdate();
 			BD.closeCon();
 		} catch (SQLException e) {
@@ -68,6 +111,132 @@ private static ProdutoBD instance;
 			e.printStackTrace();
 		}
 		
+		return list;
+	}
+	
+	public List<Produto> listarProdutos(String login){
+		List<Produto> list = new ArrayList<Produto>();
+		
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE LOGIN = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setString(1, login);
+			rs = st.executeQuery();
+		
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nome = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_area = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				list.add(new Produto(cod_produto, nome, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario, login));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<Produto> listarProdutos(String login, int cod){
+		List<Produto> list = new ArrayList<Produto>();
+		
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE LOGIN = ? AND COD_AREA = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setString(1, login);
+			st.setInt(2, cod);
+			rs = st.executeQuery();
+		
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nome = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_area = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				list.add(new Produto(cod_produto, nome, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario, login));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<Produto> listarProdutos(String login, String n){
+		List<Produto> list = new ArrayList<Produto>();
+		
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE LOGIN = ? AND NOME LIKE '%"+n+"%'";
+
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setString(1, login);		
+			rs = st.executeQuery();
+		
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nome = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_area = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				list.add(new Produto(cod_produto, nome, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario, login));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<Produto> listarProdutos(String login, int cod, String n){
+		List<Produto> list = new ArrayList<Produto>();
+		
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE LOGIN = ? AND COD_AREA = ? AND NOME LIKE '%"+n+"%'";
+			
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+			
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setString(1, login);
+			st.setInt(2, cod);
+			rs = st.executeQuery();
+			
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nome = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_area = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				list.add(new Produto(cod_produto, nome, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario, login));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		return list;
 	}
 }

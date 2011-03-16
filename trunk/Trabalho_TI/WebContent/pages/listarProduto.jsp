@@ -58,6 +58,39 @@
 <div style="padding-top: 200px;">
 <center>
 
+<table border ="2" cellpadding="2" align="center" style="padding-top: 200px;">
+	<tr>
+		<td><b>Nome</b></td>
+		<td><b>Descricao</b></td>
+		<td><b>Area</b></td>
+		<td><b>Valor Unitário</b></td>
+		<td><b>Quantidade Restante</b></td>
+		<td><b>Quantidade Vendida</b></td>
+		<!--
+		<td colspan="2"><b>Opções<b></td> 
+		 -->
+	</tr>
+	<c:forEach var="produto" items="${listaProduto}">
+		<tr>
+			<td><br>
+			${produto.nome}</td>
+			<td><br>
+			${produto.descricao}</td>
+			<td><br>
+			<c:forEach var="area" items="${listaArea}">
+				<c:if test="${produto.cod_area == area.id_area}">
+					<c:out value="${area.descricao}" />
+				</c:if>
+			</c:forEach></td>
+			<td><br>
+			${produto.valor_unitario}</td>
+			<td><br>
+			${produto.quantidade}</td>
+			<td><br>
+			${produto.quantidade_vendida}</td>		
+		</tr>
+	</c:forEach>
+</table>
 
 </center>
 </div>

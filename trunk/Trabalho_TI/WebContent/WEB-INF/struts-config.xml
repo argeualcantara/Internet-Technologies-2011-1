@@ -25,6 +25,8 @@
 		<action path="/Produtos" type="action.ProdutoAction" name="produtoForm"
 			scope="request" parameter="method" validate="false" >
 			<forward name="cadastrar" path="/pages/cadastroProduto.jsp"></forward>
+			<forward name="buscar" path="/pages/buscaVendedor.jsp"></forward>
+			<forward name="listarVendedor" path="/pages/listarProduto.jsp"></forward>
 		</action>
 		
 		<action path="/CadastroVendedor" forward="/pages/cadastroVendedor.jsp" />

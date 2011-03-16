@@ -25,11 +25,13 @@ public class ProdutoAction  extends DispatchAction{
 		List<Area> list = ProdutoBD.getInstance().listarAreas();
 		request.setAttribute("listaArea", list);
 		
-//		if(request.getParameter("id_produto") != null || Integer.parseInt(request.getParameter("id_produto")) != 0 ){
-//			
-//		}
+		String forward = "cadastrar";
 		
-		return mapping.findForward("cadastrar"); 
+		if(request.getParameter("buscar")!= null){
+			forward = "buscar";
+		}
+
+		return mapping.findForward(forward); 
 	}
 	
 	public ActionForward inserir(ActionMapping mapping, ActionForm form,
@@ -53,8 +55,45 @@ public class ProdutoAction  extends DispatchAction{
 	public ActionForward listarVendedor(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		//TODO fazer método de listar produtos
-		return mapping.findForward("erro"); 
+		
+		String login = request.getSession().getAttribute("login").toString();
+		
+		List<Produto> list = ProdutoBD.getInstance().listarProdutos(login);
+		request.setAttribute("listaProduto", list);
+		
+		List<Area> lista = ProdutoBD.getInstance().listarAreas();
+		request.setAttribute("listaArea", lista);
+		
+		return mapping.findForward("listarVendedor"); 
+	}
+	
+	public ActionForward buscar(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		String login = request.getSession().getAttribute("login").toString();
+		
+		int cod_area = ((ProdutoForm)form).getCod_area();
+		String nome = ((ProdutoForm)form).getNome();
+		
+		List<Produto> list = null;
+		
+		if(cod_area > 0 && nome != null){
+			list = ProdutoBD.getInstance().listarProdutos(login, cod_area, nome);
+		}else if(cod_area > 0){
+			list = ProdutoBD.getInstance().listarProdutos(login, cod_area);
+		}else if(nome != null){
+			list = ProdutoBD.getInstance().listarProdutos(login, nome);
+		}else{
+			list = ProdutoBD.getInstance().listarProdutos(login);
+		}
+			
+		request.setAttribute("listaProduto", list);
+		
+		List<Area> lista = ProdutoBD.getInstance().listarAreas();
+		request.setAttribute("listaArea", lista);
+		
+		return mapping.findForward("listarVendedor"); 
 	}
 	
 }

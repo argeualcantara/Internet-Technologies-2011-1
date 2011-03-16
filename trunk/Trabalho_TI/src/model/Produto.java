@@ -7,25 +7,30 @@ public class Produto {
 	private String descricao;
 	private int cod_area;
 	private int quantidade;
+	private int quantidade_vendida;
 	private double valor_unitario;
 	private String login;
 	
 	public Produto() {
-		this(0,"","",0,0,0.0,"");
+		this(0,"","",0,0,0,0.0,"");
 	}
 	
 	public Produto(int codProduto, String nome, String descricao, int codArea,
-			int quantidade, double valorUnitario, String login) {
+			int quantidade, int quantidadeVendida, double valorUnitario,
+			String login) {
 		super();
 		cod_produto = codProduto;
 		this.nome = nome;
 		this.descricao = descricao;
 		cod_area = codArea;
 		this.quantidade = quantidade;
+		quantidade_vendida = quantidadeVendida;
 		valor_unitario = valorUnitario;
-		this.login =  login;
+		this.login = login;
 	}
-	
+
+
+
 	public int getCod_produto() {
 		return cod_produto;
 	}
@@ -56,6 +61,14 @@ public class Produto {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
+	public int getQuantidade_vendida() {
+		return quantidade_vendida;
+	}
+
+	public void setQuantidade_vendida(int quantidadeVendida) {
+		quantidade_vendida = quantidadeVendida;
+	}
+
 	public double getValor_unitario() {
 		return valor_unitario;
 	}

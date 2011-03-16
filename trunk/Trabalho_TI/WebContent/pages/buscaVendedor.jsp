@@ -19,7 +19,8 @@
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
 	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-		<c:redirect url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
+		<c:redirect
+			url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
 	</c:if>
 	<c:if test="${sessionScope.login != null}">
 		<table align="right" cellpadding="2">
@@ -29,23 +30,28 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<div align="left"><a onclick="" href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
-				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a>
-				</div>
-				
+				<div align="left"><a onclick=""
+					href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
+				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a></div>
+
 				</td>
 			</tr>
 		</table>
 	</c:if>
 </html:form>
-	<div style="padding-top: 200px;">
-	<center>
-	
-	<a onclick="" href="../Produtos.do?method=carregar&buscar=true">Buscar Produtos</a><br/>
-	<a onclick="" href="../Produtos.do?method=carregar">Inserir Produtos</a><br/>
-		
-	</center>
-	</div>
+<div style="padding-top: 200px;">
+<center><html:form action="Produtos.do?method=buscar">
+	<html:text property="nome" />
+	<br />
+	<html:select property="cod_area">
+		<html:option value="0" disabled="false"> Selecione uma área</html:option>
+		<html:options collection="listaArea" property="id_area"
+			labelProperty="descricao" />
+	</html:select>
+	<html:submit styleId="botao" value="Buscar" />
+
+</html:form></center>
+</div>
 
 </body>
 </html>
