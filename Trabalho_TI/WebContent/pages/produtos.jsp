@@ -19,23 +19,7 @@
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
 	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-		<table align="right" cellpadding="2">
-			<tr>
-				<td>Usuário:</td>
-				<td><html:text property="login" />
-			</tr>
-			<tr>
-				<td>Senha:</td>
-				<td><html:password property="senha" />
-			</tr>
-			<tr>
-
-				<td colspan="2">
-				<div align="left"><a onclick="" href="CadastroVendedor.do">Registar</a>
-				<html:submit value="Entrar" /></div>
-				</td>
-			</tr>
-		</table>
+		<c:redirect url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
 	</c:if>
 	<c:if test="${sessionScope.login != null}">
 		<table align="right" cellpadding="2">
@@ -45,7 +29,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<div align="left"><a onclick="" href="http://localhost:8080/Trabalho_TI/Produtos.do?method=sessao">Produtos</a>
+				<div align="left"><a onclick="" href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
 				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a>
 				</div>
 				
@@ -58,7 +42,7 @@
 	<center>
 	
 	Buscar Produtos<br/>
-	Inserir Produtos<br/>
+	<a onclick="" href="Produtos.do?method=carregar">Produtos</a><br/>
 		
 	</center>
 	</div>
