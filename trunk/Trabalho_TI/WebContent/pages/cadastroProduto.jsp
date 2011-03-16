@@ -18,44 +18,51 @@
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
-<a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
-<div style="padding-top: 200px;">
-<html:form action="ProdutoCadastrado.do?method=inserir">
-	<html:hidden property="${login}" />
-	<table cellpadding="2" align="center" style="padding-top: 200px;">
-		<tr>
-			<td>Login:</td>
-			<td><html:text styleId="login" property="login"></html:text></td>
-			<td><c:if test="${vendedorForm.login==''}">
-				<div align="left" id="msg" style="color: red; visibility: visible;">
-				Login Existente ou Inválido</div>
-			</c:if></td>
-		</tr>
-		<tr>
-			<td>Senha:</td>
-			<td><html:password property="senha" styleId="senha"></html:password>
-			</td>
-			<td><c:if test="${vendedorForm.senha==''}">
-				<div align="left" id="msg" style="color: red; visibility: visible;">
-				Senha é obrigatório</div>
-			</c:if></td>
-		</tr>
-		<tr>
-			<td>Confirmar Senha:</td>
-			<td><html:password property="senha" onkeyup="compararSenha();"
-				styleId="senhaConf"></html:password></td>
-			<td>
-			<div align="left" id="seq" style="color: red; visibility: hidden;">Senhas
-			não conferem</div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-			<div align="right"><html:submit value="Cadastrar" /></div>
-			</td>
-		</tr>
-	</table>
+<html:form action="VendedorLogin.do?method=logar">
+	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
+		<table align="right" cellpadding="2">
+			<tr>
+				<td>Usuário:</td>
+				<td><html:text property="login" />
+			</tr>
+			<tr>
+				<td>Senha:</td>
+				<td><html:password property="senha" />
+			</tr>
+			<tr>
+
+				<td colspan="2">
+				<div align="left"><a onclick="" href="CadastroVendedor.do">Registar</a>
+				<html:submit value="Entrar" /></div>
+				</td>
+			</tr>
+		</table>
+	</c:if>
+	<c:if test="${sessionScope.login != null}">
+		<table align="right" cellpadding="2">
+			<tr>
+				<td>Você está logado como</td>
+				<td>${login}</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<div align="left"><a onclick="" href="http://localhost:8080/Trabalho_TI/Produtos.do?method=sessao">Produtos</a>
+				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a>
+				</div>
+				
+				</td>
+			</tr>
+		</table>
+	</c:if>
 </html:form>
-</div>
+	<div style="padding-top: 200px;">
+	<center>
+	
+	Buscar Produtos<br/>
+	Inserir Produtos<br/>
+		
+	</center>
+	</div>
+
 </body>
 </html>
