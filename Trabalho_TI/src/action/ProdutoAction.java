@@ -18,6 +18,14 @@ import form.ProdutoForm;
 
 public class ProdutoAction  extends DispatchAction{
 	
+	public ActionForward listarArea(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+				List<Area> list = ProdutoBD.getInstance().listarAreas();
+				request.setAttribute("listaArea", list);
+				return mapping.findForward("inicio"); 
+	}
+	
 	public ActionForward carregar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -37,17 +45,34 @@ public class ProdutoAction  extends DispatchAction{
 	public ActionForward inserir(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+			String msg="";
 			Produto produto = new Produto();
 			
 			produto.setCod_area(((ProdutoForm)form).getCod_area());
-			produto.setDescricao(((ProdutoForm)form).getDescricao());
+			produto.setDescricao(((ProdutoForm)form).getDescricao().trim());
 			produto.setLogin(request.getSession().getAttribute("login").toString());
-			produto.setNome(((ProdutoForm)form).getNome());
+			produto.setNome(((ProdutoForm)form).getNome().trim());
 			produto.setQuantidade(((ProdutoForm)form).getQuantidade());
 			produto.setValor_unitario(((ProdutoForm)form).getValor_unitario());
 			
-			ProdutoBD.getInstance().inserir(produto);
+			if(produto.getNome().trim()!= null && produto.getQuantidade()>0 && produto.getDescricao().trim()!=null &&
+				produto.getValor_unitario()>0.0 && produto.getCod_area()!=0){
+				ProdutoBD.getInstance().inserir(produto);
+			}else{
+				
+				if(produto.getNome().trim()== null || produto.getQuantidade()>0 || produto.getDescricao().trim()==null||
+					produto.getValor_unitario()==0.0 || produto.getCod_area()==0){
+						msg="Todos os campos são obrigatórios";
+						
+				}
+				
+				request.setAttribute("msg", msg);
+				List<Area> lista = ProdutoBD.getInstance().listarAreas();
+				request.setAttribute("listaArea", lista);
+				return carregar(mapping, form, request, response);
+			}
+			
+			request.setAttribute("msg", msg);
 		
 		return listarVendedor(mapping, form, request, response);
 	}
@@ -82,18 +107,52 @@ public class ProdutoAction  extends DispatchAction{
 			list = ProdutoBD.getInstance().listarProdutos(login, cod_area, nome);
 		}else if(cod_area > 0){
 			list = ProdutoBD.getInstance().listarProdutos(login, cod_area);
-		}else if(nome != null){
+		}else if(nome != null && cod_area<=0){
 			list = ProdutoBD.getInstance().listarProdutos(login, nome);
 		}else{
 			list = ProdutoBD.getInstance().listarProdutos(login);
 		}
 			
 		request.setAttribute("listaProduto", list);
+		if(list.size()>0){
+			request.setAttribute("tamanho", 1);
+		}else
+			request.setAttribute("tamanho", 0);
 		
 		List<Area> lista = ProdutoBD.getInstance().listarAreas();
 		request.setAttribute("listaArea", lista);
 		
 		return mapping.findForward("listarVendedor"); 
+	}
+	
+	public ActionForward buscaCliente(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		
+		int cod_area = ((ProdutoForm)form).getCod_area();
+		String nome = ((ProdutoForm)form).getNome();
+		
+		List<Produto> list = null;
+		
+		if(cod_area > 0 &&  (!(nome.equals("")) || nome != null ) ){
+			list = ProdutoBD.getInstance().listarProdutosCliente(cod_area, nome);
+		}else if(cod_area > 0 && nome==null){
+			list = ProdutoBD.getInstance().listarProdutosCliente( cod_area);
+		}else if(cod_area==0 && nome!=null){
+			list = ProdutoBD.getInstance().listarProdutosCliente(nome);
+		}
+		
+		if(list.size()>0){
+			request.setAttribute("listaProduto", list);
+			request.setAttribute("tamanho", 1);
+		}else
+			request.setAttribute("tamanho", 0);
+		
+		List<Area> lista = ProdutoBD.getInstance().listarAreas();
+		request.setAttribute("listaArea", lista);
+		
+		return mapping.findForward("listarCliente"); 
 	}
 	
 }

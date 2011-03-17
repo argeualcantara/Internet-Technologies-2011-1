@@ -19,6 +19,7 @@
 </head>
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
+<a href="http://localhost:8080/Trabalho_TI/">Início</a>
 	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
 		<c:redirect
 			url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
@@ -40,9 +41,21 @@
 		</table>
 	</c:if>
 </html:form>
-<div style="padding-top: 200px;">
+
 <center><html:form action="Produtos.do?method=inserir">
 	<table cellpadding="2" align="center" style="padding-top: 200px;">
+			<c:if test="${msg!=''}">
+		<tr>
+			<td>
+			
+			</td>
+			<td align="right" >
+				<div align="right" id="msg" style="color: red; visibility: visible;">
+				${msg}</div>
+			</td>
+		</tr>
+			</c:if>
+	
 		<tr>
 			<td colspan="2">Produto inserido por ${sessionScope.login}</td>
 		</tr>
@@ -80,7 +93,7 @@
 		</tr>
 	</table>
 </html:form></center>
-</div>
+
 
 
 </body>

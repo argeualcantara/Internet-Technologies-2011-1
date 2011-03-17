@@ -9,7 +9,7 @@
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
-	<a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
+	<a href="http://localhost:8080/Trabalho_TI/">Início</a>
 	<div style="padding-top: 200px;">
 	<center>
 	

@@ -1,8 +1,11 @@
 package action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Area;
 import model.Vendedor;
 
 import org.apache.struts.action.ActionForm;
@@ -10,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
+import persistencia.ProdutoBD;
 import persistencia.VendedorBD;
 import form.VendedorForm;
 
@@ -25,6 +29,8 @@ public class VendedorAction extends DispatchAction{
 		if(VendedorBD.getInstance().logar(login, senha)){
 			request.getSession().setAttribute("login", login);
 			request.setAttribute("login", login);
+			List<Area> lista = ProdutoBD.getInstance().listarAreas();
+			request.setAttribute("listaArea", lista);
 			return mapping.findForward("valido"); 
 		}
 		
@@ -37,6 +43,8 @@ public class VendedorAction extends DispatchAction{
 		
 		request.getSession().setAttribute("login", null);
 		request.setAttribute("login", null);
+		List<Area> lista = ProdutoBD.getInstance().listarAreas();
+		request.setAttribute("listaArea", lista);
 		request.setAttribute("metodo", "deslogar");
 		
 		return mapping.findForward("valido"); 

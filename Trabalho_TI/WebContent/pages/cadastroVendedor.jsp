@@ -19,9 +19,8 @@
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
-<a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
+<a href="http://localhost:8080/Trabalho_TI/">Início</a>
 
-<div style="padding-top: 200px;">
 <center><html:form action="Cadastro.do?method=cadastrar">
 	<table cellpadding="2" align="center" style="padding-top: 200px;">
 		<tr>
@@ -61,6 +60,5 @@
 		</tr>
 	</table>
 </html:form></center>
-</div>
 </body>
 </html>
