@@ -159,4 +159,22 @@ public class ProdutoAction  extends DispatchAction{
 		return mapping.findForward("listarCliente"); 
 	}
 	
+	public ActionForward mostrar(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+			ProdutoForm pf=new ProdutoForm();
+			
+			Produto produto= ProdutoBD.getInstance().buscarProduto(Integer.parseInt(request.getParameter("cod_produto")));
+			
+			pf.setCod_area(produto.getCod_area());
+			pf.setCod_produto(produto.getCod_produto());
+			pf.setNome(produto.getNome());
+			pf.setValor_unitario(produto.getValor_unitario());
+			pf.setDescricao(produto.getDescricao());
+			request.setAttribute("produtoForm", pf);
+			
+		
+		return mapping.findForward("mostrar");
+	}
+	
 }
