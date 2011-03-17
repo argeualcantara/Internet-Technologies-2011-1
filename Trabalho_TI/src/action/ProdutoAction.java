@@ -88,6 +88,10 @@ public class ProdutoAction  extends DispatchAction{
 		
 		List<Area> lista = ProdutoBD.getInstance().listarAreas();
 		request.setAttribute("listaArea", lista);
+		ProdutoForm pf=new ProdutoForm();
+		
+		request.setAttribute("produtoForm", pf);
+		request.setAttribute("tamanho", 1);
 		
 		return mapping.findForward("listarVendedor"); 
 	}
