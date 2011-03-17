@@ -33,14 +33,12 @@
 			<forward name="buscar" path="/pages/buscaVendedor.jsp"></forward>
 			<forward name="listarVendedor" path="/pages/listarProduto.jsp"></forward>
 			<forward name="listarCliente" path="/pages/buscarCliente.jsp"></forward>
+			<forward name="mostrar" path="/pages/mostrarProduto.jsp"></forward>
 		</action>
 		
 		<action path="/CadastroVendedor" forward="/pages/cadastroVendedor.jsp" />
 
-		<action path="/TesteBusca" type="action.TesteAction" name="testeForm"
-			scope="request" parameter="method" validate="false">
-			<forward name="mostrar" path="/pages/index.jsp" />
-		</action>
+		
 		
 		<action path="/VendedorLogin" type="action.VendedorAction" name="vendedorForm"
 		scope="request" parameter="method" validate="false">

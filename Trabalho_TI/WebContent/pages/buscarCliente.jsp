@@ -39,7 +39,7 @@
 
 <c:if test="${tamanho==1 }">
 <c:forEach var="produto" items="${listaProduto}">
-
+<div style="padding-left: 50px;">
 <h2><a href="Produtos.do?method=mostrar&cod_produto=${produto.cod_produto}">${produto.nome}</a></h2>
 ${produto.descricao}
 <br/>
@@ -48,6 +48,7 @@ Qtde restante: <font color="red">${produto.quantidade}</font>
 Valor unitário: ${produto.valor_unitario}
 <br/>
 <br/>
+</div>
 </c:forEach>
 </c:if>
 </body>
