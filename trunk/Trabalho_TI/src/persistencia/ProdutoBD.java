@@ -45,6 +45,37 @@ private static ProdutoBD instance;
 		}
 	}
 	
+	public Produto buscarProduto(int cod){
+		
+		Produto produto = new Produto();
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE COD_PRODUTO = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setInt(1, cod);
+			rs = st.executeQuery();
+			
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nome = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_area = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				produto= new Produto(cod_produto, nome, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario, "");
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return produto;
+	}
+	
 	public void mudarEstoque(final Produto produto, int quantidade){
 		try {
 			String sql = "UPDATE PRODUTO SET QUANTIDADE = ? WHERE COD_PRODUTO = ?";
