@@ -17,31 +17,10 @@
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
-<html:form action="VendedorLogin.do?method=logar">
-<a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
-	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-		<c:redirect
-			url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
-	</c:if>
-	<c:if test="${sessionScope.login != null}">
-		<table align="right" cellpadding="2">
-			<tr>
-				<td>Você está logado como</td>
-				<td>${login}</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-				<div align="left"><a onclick=""
-					href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
-				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a></div>
-
-				</td>
-			</tr>
-		</table>
-	</c:if>
-</html:form>
+<a href="http://localhost:8080/Trabalho_TI/">Início</a>
+<center>
 <div style="padding-top: 200px;">
-<center><html:form action="Produtos.do?method=buscar">
+<html:form action="Produtos.do?method=buscaCliente">
 	<html:text property="nome" />
 	
 	<html:select property="cod_area">
@@ -50,9 +29,26 @@
 			labelProperty="descricao" />
 	</html:select>
 	<html:submit styleId="botao" value="Buscar" />
-
-</html:form></center>
+</html:form>
 </div>
+</center>
 
+<c:if test="${tamanho==0}">
+<font color="red">Sua Consulta não gerou resultados</font>
+</c:if>
+
+<c:if test="${tamanho==1 }">
+<c:forEach var="produto" items="${listaProduto}">
+
+<h2><a href="Produtos.do?method=mostrar&cod_produto=${produto.cod_produto}">${produto.nome}</a></h2>
+${produto.descricao}
+<br/>
+Qtde restante: <font color="red">${produto.quantidade}</font>
+<br/>
+Valor unitário: ${produto.valor_unitario}
+<br/>
+<br/>
+</c:forEach>
+</c:if>
 </body>
 </html>

@@ -49,7 +49,7 @@
 			<tr>
 				<td colspan="2">
 					<div align="left">
-						<a onclick="" href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
+						<a onclick="" href="http://localhost:8080/Trabalho_TI/Produto.do">Produtos</a>
 						<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a>
 					</div>
 					
@@ -58,13 +58,21 @@
 		</table>
 	</c:if>
 </html:form>
-<html:form action="/TesteBusca.do?method=buscar">
+
+<center>
+<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
+<html:form action="Produtos.do?method=buscaCliente">
 	<div style="padding-top: 200px;">
-	<center><html:text property="id" /><html:submit
-		value="Buscar" />
-	<h1><bean:write name="testeForm" property="desc" /></h1>
-	</center>
-	</div>
+	<html:text property="nome" />
+	<html:select property="cod_area">
+		<html:option value="0" disabled="false"> Selecione uma área</html:option>
+		<html:options collection="listaArea" property="id_area"
+			labelProperty="descricao" />
+	</html:select>
+	<html:submit styleId="botao" value="Buscar" />
+</div>
 </html:form>
+</c:if>
+</center>
 </body>
 </html>

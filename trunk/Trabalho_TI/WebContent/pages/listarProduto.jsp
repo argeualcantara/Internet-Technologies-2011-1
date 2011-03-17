@@ -16,8 +16,9 @@
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
+
 <html:form action="VendedorLogin.do?method=logar">
-	<a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
+<a href="http://localhost:8080/Trabalho_TI/">Início</a>
 	<table align="right" cellpadding="2">
 		<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
 			<c:if test="${metodo=='deslogar'}">
@@ -47,18 +48,35 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<div align="left"><a onclick=""
-					href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
+				<div align="left"><a onclick="" href="http://localhost:8080/Trabalho_TI/Produto.do">Produtos</a>
 				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a></div>
 				</td>
 			</tr>
 		</c:if>
 	</table>
 </html:form>
+
 <div style="padding-top: 200px;">
+<center><html:form action="Produtos.do?method=buscar">
+	<html:text property="nome" />
+	
+	<html:select property="cod_area">
+		<html:option value="0" disabled="false"> Selecione uma área</html:option>
+		<html:options collection="listaArea" property="id_area"
+			labelProperty="descricao" />
+	</html:select>
+	<html:submit styleId="botao" value="Buscar" />
+
+</html:form></center>
+
+
 <center>
 
-<table border ="2" cellpadding="2" align="center" style="padding-top: 200px;">
+	<c:if test="${tamanho==0}">
+		<font color="red" >Sua busca não gerou resultados.</font>
+	</c:if>
+	<c:if test="${tamanho==1}">
+<table border ="2" cellpadding="2" align="center">
 	<tr>
 		<td><b>Nome</b></td>
 		<td><b>Descricao</b></td>
@@ -70,7 +88,7 @@
 		<td colspan="2"><b>Opções<b></td> 
 		 -->
 	</tr>
-	<c:forEach var="produto" items="${listaProduto}">
+		<c:forEach var="produto" items="${listaProduto}">
 		<tr>
 			<td><br>
 			${produto.nome}</td>
@@ -90,10 +108,12 @@
 			${produto.quantidade_vendida}</td>		
 		</tr>
 	</c:forEach>
+	
 </table>
-
+	</c:if>
 </center>
 </div>
+
 
 </body>
 </html>

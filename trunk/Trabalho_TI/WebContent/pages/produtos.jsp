@@ -17,7 +17,9 @@
 <title>Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
+
 <html:form action="VendedorLogin.do?method=logar">
+<a href="http://localhost:8080/Trabalho_TI/">Início</a>
 	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
 		<c:redirect url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
 	</c:if>
@@ -29,7 +31,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<div align="left"><a onclick="" href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
+				<div align="left"><a onclick="" href="http://localhost:8080/Trabalho_TI/Produto.do">Produtos</a>
 				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a>
 				</div>
 				
@@ -41,8 +43,8 @@
 	<div style="padding-top: 200px;">
 	<center>
 	
-	<a onclick="" href="../Produtos.do?method=carregar&buscar=true">Buscar Produtos</a><br/>
-	<a onclick="" href="../Produtos.do?method=carregar">Inserir Produtos</a><br/>
+	<a onclick="" href="Produtos.do?method=carregar&buscar=true">Buscar Produtos</a><br/>
+	<a onclick="" href="Produtos.do?method=carregar">Inserir Produtos</a><br/>
 		
 	</center>
 	</div>

@@ -239,4 +239,100 @@ private static ProdutoBD instance;
 		}
 		return list;
 	}
+
+	public List<Produto> listarProdutosCliente(String nome) {
+List<Produto> list = new ArrayList<Produto>();
+		
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE NOME LIKE ? ";
+			
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+			
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setString(1, "%"+nome+"%");
+			
+			rs = st.executeQuery();
+			
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nomeProd = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_area = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				list.add(new Produto(cod_produto, nomeProd, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario,""));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public List<Produto> listarProdutosCliente(int cod_area) {
+		List<Produto> list = new ArrayList<Produto>();
+		
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE COD_AREA = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setInt(1, cod_area);
+			
+			rs = st.executeQuery();
+		
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nome = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_areaProd = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				list.add(new Produto(cod_produto, nome, descricao, cod_areaProd, quantidade, quantidade_vendida, valor_unitario, ""));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public List<Produto> listarProdutosCliente(int cod_area, String nome) {
+List<Produto> list = new ArrayList<Produto>();
+		
+		try {
+			String sql = "SELECT * FROM PRODUTO WHERE COD_AREA = ? AND NOME LIKE '%"+nome+"%'";
+			
+			Connection con = null;
+			PreparedStatement st = null;
+			ResultSet rs = null;
+			
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setInt(1, cod_area);
+			
+			rs = st.executeQuery();
+			
+			while (rs.next()) {
+				int cod_produto = rs.getInt("cod_produto");
+				String nomeProd = rs.getString("nome");
+				String descricao = rs.getString("descricao");
+				int cod_areaProd = rs.getInt("cod_area");
+				int quantidade = rs.getInt("quantidade");
+				int quantidade_vendida = rs.getInt("quantidade_vendida");
+				double valor_unitario = rs.getDouble("valor_unitario");
+				list.add(new Produto(cod_produto, nomeProd, descricao, cod_areaProd, quantidade, quantidade_vendida, valor_unitario, ""));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
