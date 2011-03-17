@@ -21,7 +21,7 @@
 <html:form action="VendedorLogin.do?method=logar">
 <a href="http://localhost:8080/Trabalho_TI/">Início</a>
 	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-		<c:redirect url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
+		<c:redirect url="http://localhost:8080/Trabalho_TI/ErroLogin.do"></c:redirect>
 	</c:if>
 	<c:if test="${sessionScope.login != null}">
 		<table align="right" cellpadding="2">

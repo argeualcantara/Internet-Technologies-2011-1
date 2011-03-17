@@ -21,7 +21,7 @@
 <a href="http://localhost:8080/Trabalho_TI/Index.do">Início</a>
 	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
 		<c:redirect
-			url="http://localhost:8080/Trabalho_TI/pages/erroLogin.jsp"></c:redirect>
+			url="http://localhost:8080/Trabalho_TI/ErroLogin.do"></c:redirect>
 	</c:if>
 	<c:if test="${sessionScope.login != null}">
 		<table align="right" cellpadding="2">
@@ -32,7 +32,7 @@
 			<tr>
 				<td colspan="2">
 				<div align="left"><a onclick=""
-					href="http://localhost:8080/Trabalho_TI/pages/produtos.jsp">Produtos</a>
+					href="http://localhost:8080/Trabalho_TI/Produto.do">Produtos</a>
 				<a onclick="" href="VendedorLogin.do?method=deslogar">Sair</a></div>
 
 				</td>
