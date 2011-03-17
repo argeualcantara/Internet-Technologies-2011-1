@@ -21,9 +21,7 @@
 <a href="http://localhost:8080/Trabalho_TI/">Início</a>
 	<table align="right" cellpadding="2">
 		<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
-			<c:if test="${metodo=='deslogar'}">
-						Você saiu de sua conta.
-				</c:if>
+			<c:redirect url="http://localhost:8080/Trabalho_TI/ErroLogin.do"></c:redirect>
 			<tr>
 				<td align="right">Usuário:</td>
 				<td align="right"><html:text property="login" />
