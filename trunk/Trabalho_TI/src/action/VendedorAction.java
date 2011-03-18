@@ -66,6 +66,8 @@ public class VendedorAction extends DispatchAction{
 			VendedorBD.getInstance().inserir(vendedor);
 			VendedorForm vf=new VendedorForm();
 			request.setAttribute("vendedorForm", vf);
+			List<Area> lista = ProdutoBD.getInstance().listarAreas();
+			request.setAttribute("listaArea", lista);
 			return mapping.findForward("valido"); 
 		}
 		if(!(VendedorBD.getInstance().validarNomeLogin(login) && !(login.equals("")) && login!=null))
@@ -79,6 +81,7 @@ public class VendedorAction extends DispatchAction{
 			((VendedorForm) form).setSenha("");
 			((VendedorForm) form).setSenhaCheck("");
 		}
+		
 		request.setAttribute("vendedorForm", form);
 		
 		return mapping.findForward("erro");

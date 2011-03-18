@@ -18,6 +18,7 @@
 </head>
 <body class="bgStyle">
 <a href="http://localhost:8080/Trabalho_TI/">Início</a>
+<a href="">Voltar</a>
 <center>
 <div style="padding-top: 200px;">
 <html:form action="Produtos.do?method=comprar&cod_produto=${produtoForm.cod_produto}">
@@ -34,7 +35,7 @@
 		</tr>
 		<tr>
 			<td><br/>
-				Preço: ${produtoForm.valor_unitario}
+				Preço:R$ ${produtoForm.valor_unitario}
 			</td>
 		</tr>
 		<tr>
