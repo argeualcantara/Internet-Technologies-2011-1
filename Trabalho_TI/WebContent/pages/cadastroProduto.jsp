@@ -42,8 +42,9 @@
 	</c:if>
 </html:form>
 
-<center><html:form action="Produtos.do?method=inserir">
-	<table cellpadding="2" align="center" style="padding-top: 200px;">
+<html:form action="Produtos.do?method=inserir">
+
+	<table cellpadding="2" align="center" style="padding-left:120px; padding-top: 200px;">
 			<c:if test="${msg!=''}">
 		<tr>
 			<td>
@@ -57,6 +58,7 @@
 			</c:if>
 	
 		<tr>
+			<td></td>
 			<td colspan="2">Produto inserido por ${sessionScope.login}</td>
 		</tr>
 		<!-- INSERT INTO PRODUTO (NOME, DESCRICAO, COD_AREA, VALOR_UNITARIO, LOGIN) VALUES (?,?)";  -->
@@ -92,7 +94,8 @@
 			</td>
 		</tr>
 	</table>
-</html:form></center>
+	
+</html:form>
 
 
 

@@ -272,7 +272,7 @@ private static ProdutoBD instance;
 	}
 
 	public List<Produto> listarProdutosCliente(String nome) {
-List<Produto> list = new ArrayList<Produto>();
+		List<Produto> list = new ArrayList<Produto>();
 		
 		try {
 			String sql = "SELECT * FROM PRODUTO WHERE NOME LIKE ? ";
@@ -290,12 +290,13 @@ List<Produto> list = new ArrayList<Produto>();
 			while (rs.next()) {
 				int cod_produto = rs.getInt("cod_produto");
 				String nomeProd = rs.getString("nome");
+				String login=rs.getString("login");
 				String descricao = rs.getString("descricao");
 				int cod_area = rs.getInt("cod_area");
 				int quantidade = rs.getInt("quantidade");
 				int quantidade_vendida = rs.getInt("quantidade_vendida");
 				double valor_unitario = rs.getDouble("valor_unitario");
-				list.add(new Produto(cod_produto, nomeProd, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario,""));
+				list.add(new Produto(cod_produto, nomeProd, descricao, cod_area, quantidade, quantidade_vendida, valor_unitario,login));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -322,12 +323,13 @@ List<Produto> list = new ArrayList<Produto>();
 			while (rs.next()) {
 				int cod_produto = rs.getInt("cod_produto");
 				String nome = rs.getString("nome");
+				String login=rs.getString("login");
 				String descricao = rs.getString("descricao");
 				int cod_areaProd = rs.getInt("cod_area");
 				int quantidade = rs.getInt("quantidade");
 				int quantidade_vendida = rs.getInt("quantidade_vendida");
 				double valor_unitario = rs.getDouble("valor_unitario");
-				list.add(new Produto(cod_produto, nome, descricao, cod_areaProd, quantidade, quantidade_vendida, valor_unitario, ""));
+				list.add(new Produto(cod_produto, nome, descricao, cod_areaProd, quantidade, quantidade_vendida, valor_unitario, login));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -354,12 +356,13 @@ List<Produto> list = new ArrayList<Produto>();
 			while (rs.next()) {
 				int cod_produto = rs.getInt("cod_produto");
 				String nomeProd = rs.getString("nome");
+				String login=rs.getString("login");
 				String descricao = rs.getString("descricao");
 				int cod_areaProd = rs.getInt("cod_area");
 				int quantidade = rs.getInt("quantidade");
 				int quantidade_vendida = rs.getInt("quantidade_vendida");
 				double valor_unitario = rs.getDouble("valor_unitario");
-				list.add(new Produto(cod_produto, nomeProd, descricao, cod_areaProd, quantidade, quantidade_vendida, valor_unitario, ""));
+				list.add(new Produto(cod_produto, nomeProd, descricao, cod_areaProd, quantidade, quantidade_vendida, valor_unitario, login));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

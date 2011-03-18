@@ -60,7 +60,7 @@ public class ProdutoAction  extends DispatchAction{
 				ProdutoBD.getInstance().inserir(produto);
 			}else{
 				
-				if(produto.getNome().trim()== null || produto.getQuantidade()>0 || produto.getDescricao().trim()==null||
+				if(produto.getNome().trim()== null || produto.getQuantidade()<=0 || produto.getDescricao().trim()==null||
 					produto.getValor_unitario()==0.0 || produto.getCod_area()==0){
 						msg="Todos os campos são obrigatórios";
 						
