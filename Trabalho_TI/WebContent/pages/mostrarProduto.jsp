@@ -18,7 +18,7 @@
 </head>
 <body class="bgStyle">
 <a href="http://localhost:8080/Trabalho_TI/">Início</a>
-<a href="">Voltar</a>
+<a href="javascript:history.back();" >Voltar</a>
 <center>
 <div style="padding-top: 200px;">
 <html:form action="Produtos.do?method=comprar&cod_produto=${produtoForm.cod_produto}">
