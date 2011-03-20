@@ -43,7 +43,7 @@
 </html:form>
 
 <html:form action="Produtos.do?method=inserir">
-
+	<html:hidden property="cod_produto"/>
 	<table cellpadding="2" align="center" style="padding-left:120px; padding-top: 200px;">
 			<c:if test="${msg!=''}">
 		<tr>
@@ -61,7 +61,6 @@
 			<td></td>
 			<td colspan="2">Produto inserido por ${sessionScope.login}</td>
 		</tr>
-		<!-- INSERT INTO PRODUTO (NOME, DESCRICAO, COD_AREA, VALOR_UNITARIO, LOGIN) VALUES (?,?)";  -->
 		<tr>
 			<td>Nome:</td>
 			<td><html:text property="nome"></html:text></td>
@@ -89,8 +88,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-			<div align="right"><html:submit styleId="botao"
-				value="Inserir" /></div>
+			<html:submit styleId="botao" value="Inserir" />
 			</td>
 		</tr>
 	</table>
