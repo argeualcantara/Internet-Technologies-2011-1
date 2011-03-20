@@ -12,7 +12,18 @@ public class ProdutoForm extends ActionForm{
 	private int quantidade;
 	private double valor_unitario;
 	private String login;
+	private String [] marcados;
 	
+	public ProdutoForm(){
+		cod_produto = 0;
+	}
+	
+	public String[] getMarcados() {
+		return marcados;
+	}
+	public void setMarcados(String[] marcados) {
+		this.marcados = marcados;
+	}
 	public int getCod_produto() {
 		return cod_produto;
 	}

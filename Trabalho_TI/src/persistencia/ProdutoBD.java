@@ -45,6 +45,29 @@ private static ProdutoBD instance;
 		}
 	}
 	
+	public void alterar(final Produto produto){
+		try {
+			String sql = "UPDATE PRODUTO SET NOME = ?, DESCRICAO = ?, COD_AREA = ?, " +
+					"VALOR_UNITARIO = ?, QUANTIDADE  = ? WHERE COD_PRODUTO = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+			
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setString(1, produto.getNome());
+			st.setString(2, produto.getDescricao());
+			st.setInt(3, produto.getCod_area());
+			st.setDouble(4, produto.getValor_unitario());
+			st.setInt(5, produto.getQuantidade());
+			st.setInt(6, produto.getCod_produto());
+			st.executeUpdate();
+			BD.closeCon();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public Produto buscarProduto(int cod){
 		
 		Produto produto = new Produto();
@@ -74,6 +97,32 @@ private static ProdutoBD instance;
 			e.printStackTrace();
 		}
 		return produto;
+	}
+	
+	public void remover(String marcados[]){
+		for (int i = 0; i < marcados.length; i++) {
+			if(!marcados[i].equals("0")){
+				remover(marcados[i]);
+			}
+		}
+	}
+	
+	public void remover(String marcado){
+		try {
+			String sql = "DELETE FROM PRODUTO WHERE COD_PRODUTO = ?";
+
+			Connection con = null;
+			PreparedStatement st = null;
+			
+			con = BD.getCon();
+			st = con.prepareStatement(sql.toString());
+			st.setString(1, marcado);
+			
+			st.executeUpdate();
+			BD.closeCon();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void mudarEstoque(final Produto produto, int quantidade){
