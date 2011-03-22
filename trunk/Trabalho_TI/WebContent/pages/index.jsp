@@ -18,11 +18,12 @@
 </head>
 <body class="bgStyle">
 <html:form action="VendedorLogin.do?method=logar">
+<a href="http://localhost:8080/Trabalho_TI/BuscarCompras.do">Buscar Compras</a>
 	<c:if test="${sessionScope.login == null || sessionScope.login == ''}">
 				<c:if test="${metodo=='deslogar'}">
 						Você saiu de sua conta.
 				</c:if>
-		<table align="right" cellpadding="2">
+		<table align="right" cellpadding="2" >
 			<tr>
 				<td align="right">Usuário:</td>
 				<td align="right"><html:text property="login" />
