@@ -14,7 +14,28 @@
 </style>
 
 <script type="text/javascript">
-function calcularValor(preco){
+
+function validarQtde(){
+	var qtde=${qtde};
+	var qtdeCompra= document.getElementById('qtde').value;
+	var cpf= document.getElementById('cpf').value;
+	var msg="";
+	if(qtdeCompra<=qtde && qtdeCompra!=0 && cpf!=0 && cpf>0 && cpf!=null){
+		return true;
+	}
+	if(cpf==0 || cpf<0 || cpf==null){
+		msg+='Por favor, digite um CPF.\n';
+	}
+	if(qtdeCompra>qtde || qtdeCompra==0){
+		msg+='Quantidade máxima ultrapassada.';
+	}
+	if(msg!=''){
+		alert(msg);
+		return false;
+	}
+}
+
+function calcularValor(){
 	var qtde=${qtde};
 	var preco=${valor_unitario};
 	var qtdeCompra= document.getElementById('qtde').value;
@@ -40,10 +61,11 @@ function calcularValor(preco){
 </head>
 <body class="bgStyle">
 <a href="http://localhost:8080/Trabalho_TI/">Início</a>
+<a href="http://localhost:8080/Trabalho_TI/BuscarCompras.do">Buscar Compras</a>
 <a href="javascript:history.back();" >Voltar</a>
 
 <div style="padding-top: 200px;">
-<html:form action="Compra.do?method=comprar&cod_produto=${cod_produto}">
+<html:form action="Compra.do?method=comprar&cod_produto=${cod_produto}" onsubmit="return validarQtde();" >
 	<table style="padding-left: 30%;">
 		<tr>
 			<td colspan="3" align="right"> 
@@ -65,7 +87,7 @@ function calcularValor(preco){
 		CPF:
 		</td>
 		<td colspan="3">
-		<html:text property="cpf"/>
+		<html:text styleId="cpf" property="cpf"/>
 		</td>
 		</tr>
 		<tr>
@@ -81,7 +103,7 @@ function calcularValor(preco){
 		</tr>
 		<tr>
 		<td colspan="3" align="right">
-		<html:submit styleId="botao" value="Comprar" />
+		<html:submit value="Comprar" />
 		</td>
 		</tr>
 	</table>

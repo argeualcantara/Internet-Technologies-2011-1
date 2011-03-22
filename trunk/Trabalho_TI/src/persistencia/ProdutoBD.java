@@ -324,7 +324,7 @@ private static ProdutoBD instance;
 		List<Produto> list = new ArrayList<Produto>();
 		
 		try {
-			String sql = "SELECT * FROM PRODUTO WHERE NOME LIKE ? ";
+			String sql = "SELECT * FROM PRODUTO WHERE NOME LIKE ? AND QUANTIDADE>0";
 			
 			Connection con = null;
 			PreparedStatement st = null;
@@ -357,7 +357,7 @@ private static ProdutoBD instance;
 		List<Produto> list = new ArrayList<Produto>();
 		
 		try {
-			String sql = "SELECT * FROM PRODUTO WHERE COD_AREA = ?";
+			String sql = "SELECT * FROM PRODUTO WHERE COD_AREA = ? AND QUANTIDADE>0";
 
 			Connection con = null;
 			PreparedStatement st = null;
@@ -390,7 +390,7 @@ private static ProdutoBD instance;
 List<Produto> list = new ArrayList<Produto>();
 		
 		try {
-			String sql = "SELECT * FROM PRODUTO WHERE COD_AREA = ? AND NOME LIKE '%"+nome+"%'";
+			String sql = "SELECT * FROM PRODUTO WHERE COD_AREA = ? AND NOME LIKE '%"+nome+"%' AND QUANTIDADE>0";
 			
 			Connection con = null;
 			PreparedStatement st = null;
