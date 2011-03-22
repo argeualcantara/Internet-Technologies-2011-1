@@ -18,6 +18,7 @@
 </head>
 <body class="bgStyle">
 <a href="http://localhost:8080/Trabalho_TI/">Início</a>
+<a href="http://localhost:8080/Trabalho_TI/BuscarCompras.do">Buscar Compras</a>
 <center>
 <div style="padding-top: 200px;">
 <html:form action="Produtos.do?method=buscaCliente">
