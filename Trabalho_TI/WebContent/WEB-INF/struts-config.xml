@@ -9,6 +9,7 @@
 		<form-bean name="testeForm" type="form.TesteForm"></form-bean>
 		<form-bean name="vendedorForm" type="form.VendedorForm"></form-bean>
 		<form-bean name="produtoForm" type="form.ProdutoForm"></form-bean>
+		<form-bean name="compraForm" type="form.CompraForm"></form-bean>
 	</form-beans>
 
 	<global-forwards>
@@ -25,7 +26,15 @@
 		</action>
 		<action path="/Produto" forward="/pages/produtos.jsp" />
 		
+		<action path="/BuscarCompras" forward="/pages/buscarCompras.jsp" />
+		
 		<action path="/ErroLogin" forward="/pages/erroLogin.jsp" />
+		
+		<action path="/Compra" type="action.CompraAction" name="compraForm"
+			scope="request" parameter="method" validate="false" >
+			<forward name="listarCompras" path="/pages/listarCompras.jsp"></forward>
+			
+		</action>
 		
 		<action path="/Produtos" type="action.ProdutoAction" name="produtoForm"
 			scope="request" parameter="method" validate="false" >

@@ -13,33 +13,74 @@
 }
 </style>
 
+<script type="text/javascript">
+function calcularValor(preco){
+	var qtde=${qtde};
+	var preco=${valor_unitario};
+	var qtdeCompra= document.getElementById('qtde').value;
+	var div1=document.getElementById('div1');
+	if(qtdeCompra=='' || qtdeCompra==null || qtdeCompra==0){
+		div1.setAttribute('style','color: red; visibility:hidden;');
+		return;
+	}
+	
+	if(qtdeCompra>qtde){
+		div1.setAttribute('style','color: red; visibility:visible;');
+		div1.innerHTML='Quantidade indisponível no momento';
+	}else{
+		div1.setAttribute('style','color: red; visibility:visible;');
+		div1.innerHTML='Total: '+qtdeCompra*preco;
+		return;
+	}
+}
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${produtoForm.nome} - Mercado Livre 2.0</title>
+<title>${nome} - Mercado Livre 2.0</title>
 </head>
 <body class="bgStyle">
 <a href="http://localhost:8080/Trabalho_TI/">Início</a>
 <a href="javascript:history.back();" >Voltar</a>
-<center>
+
 <div style="padding-top: 200px;">
-<html:form action="Produtos.do?method=comprar&cod_produto=${produtoForm.cod_produto}">
-	<table>
+<html:form action="Compra.do?method=comprar&cod_produto=${cod_produto}">
+	<table style="padding-left: 30%;">
 		<tr>
-			<td>
-				<h1>${produtoForm.nome}</h1>
+			<td colspan="3" align="right"> 
+				<h1>${nome}</h1>
 			</td>
 		</tr>
 		<tr>
-			<td>
-				${produtoForm.descricao}
+			<td colspan="3" align="right">
+				${descricao}
 			</td>
 		</tr>
 		<tr>
-			<td><br/>
-				Preço:R$ ${produtoForm.valor_unitario}
+			<td colspan="3" align="right"><br/>
+				Preço:R$ ${valor_unitario}
 			</td>
 		</tr>
 		<tr>
-		<td align="right">
+		<td colspan="3" align="right">
+		CPF:
+		</td>
+		<td colspan="3">
+		<html:text property="cpf"/>
+		</td>
+		</tr>
+		<tr>
+		<td colspan="3" align="right">
+		Quantidade:
+		</td>
+		<td>
+		<html:text styleId="qtde" onkeyup="calcularValor();" property="qtde"/>
+		</td>
+		<td>
+		<label id="div1"  style="visibility: hidden;"></label>
+		</td>
+		</tr>
+		<tr>
+		<td colspan="3" align="right">
 		<html:submit styleId="botao" value="Comprar" />
 		</td>
 		</tr>
@@ -47,7 +88,7 @@
 	
 </html:form>
 </div>
-</center>
+
 
 </body>
 </html>

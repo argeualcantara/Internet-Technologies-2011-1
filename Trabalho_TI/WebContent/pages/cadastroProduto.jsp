@@ -87,8 +87,9 @@
 			</html:select></td>
 		</tr>
 		<tr>
-			<td colspan="2">
-			<html:submit styleId="botao" value="Inserir" />
+			<td colspan="2" align="center">
+			<html:submit styleId="botao" value="Salvar" />
+			<html:button property="" value="Cancelar" onclick="javascript:history.back();"></html:button>
 			</td>
 		</tr>
 	</table>

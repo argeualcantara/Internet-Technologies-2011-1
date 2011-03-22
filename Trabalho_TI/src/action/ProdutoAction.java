@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Area;
+import model.Compra;
 import model.Produto;
 
 import org.apache.struts.action.ActionForm;
@@ -13,7 +14,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
+import persistencia.CompraBD;
 import persistencia.ProdutoBD;
+import form.CompraForm;
 import form.ProdutoForm;
 
 public class ProdutoAction extends DispatchAction {
@@ -195,17 +198,18 @@ public class ProdutoAction extends DispatchAction {
 	public ActionForward mostrar(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		ProdutoForm pf = new ProdutoForm();
+		CompraForm cf = new CompraForm();
 
 		Produto produto = ProdutoBD.getInstance().buscarProduto(
 				Integer.parseInt(request.getParameter("cod_produto")));
 
-		pf.setCod_area(produto.getCod_area());
-		pf.setCod_produto(produto.getCod_produto());
-		pf.setNome(produto.getNome());
-		pf.setValor_unitario(produto.getValor_unitario());
-		pf.setDescricao(produto.getDescricao());
-		request.setAttribute("produtoForm", pf);
+		request.setAttribute("cod_area",produto.getCod_area());
+		request.setAttribute("cod_produto",produto.getCod_produto());
+		request.setAttribute("nome",produto.getNome());
+		request.setAttribute("qtde",produto.getQuantidade());
+		request.setAttribute("valor_unitario",produto.getValor_unitario());
+		request.setAttribute("descricao",produto.getDescricao());
+		request.setAttribute("compraForm", cf);
 
 		return mapping.findForward("mostrar");
 	}
