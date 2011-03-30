@@ -102,24 +102,25 @@ href="VendedorLogin.do?method=deslogar">Sair</a></div>
 					<div align="right"><html:checkbox property="marcados"
 						value="${produto.cod_produto}"></html:checkbox></div>
 					</td>
-					<td><br>
+					<td>
 					${produto.nome}</td>
-					<td><br>
+					<td>
 					${produto.descricao}</td>
-					<td><br>
+					<td>
 					<c:forEach var="area" items="${listaArea}">
 						<c:if test="${produto.cod_area == area.id_area}">
 							<c:out value="${area.descricao}" />
 						</c:if>
 					</c:forEach></td>
-					<td><br>
+					<td>
 					${produto.valor_unitario}</td>
-					<td><br>
+					<td>
 					${produto.quantidade}</td>
-					<td><br>
+					<td>
 					${produto.quantidade_vendida}</td>
-					<td><br>
-					<a href="Produtos.do?method=carregar&indice=${produto.cod_produto}">Alterar </a></td>
+					<td>
+					<center><a href="Produtos.do?method=carregar&indice=${produto.cod_produto}">
+					<img alt="Editar" name="Editar" src="images/EditIcon.gif"/> </a></center></td>
 				</tr>
 			</c:forEach>
 			<tr>
