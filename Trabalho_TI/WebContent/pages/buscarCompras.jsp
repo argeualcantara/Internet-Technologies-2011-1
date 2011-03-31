@@ -27,7 +27,7 @@
 					CPF: 
 					</td>
 					<td>
-					<html:text property="cpf"/>
+					<html:text property="cpf" onkeypress="mascara(this,soNumeros)"/>
 					</td>
 					<td>
 					<html:submit value="Procurar"/>

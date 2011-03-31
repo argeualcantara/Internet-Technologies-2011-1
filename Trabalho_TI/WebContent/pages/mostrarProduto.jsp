@@ -13,47 +13,8 @@
 }
 </style>
 
-<script type="text/javascript">
-
-function validarQtde(){
-	var qtde=${qtde};
-	var qtdeCompra= document.getElementById('qtde').value;
-	var cpf= document.getElementById('cpf').value;
-	var msg="";
-	if(qtdeCompra<=qtde && qtdeCompra!=0 && cpf!=0 && cpf>0 && cpf!=null){
-		return true;
-	}
-	if(cpf==0 || cpf<0 || cpf==null){
-		msg+='Por favor, digite um CPF.\n';
-	}
-	if(qtdeCompra>qtde || qtdeCompra==0){
-		msg+='Quantidade máxima ultrapassada.';
-	}
-	if(msg!=''){
-		alert(msg);
-		return false;
-	}
-}
-
-function calcularValor(){
-	var qtde=${qtde};
-	var preco=${valor_unitario};
-	var qtdeCompra= document.getElementById('qtde').value;
-	var div1=document.getElementById('div1');
-	if(qtdeCompra=='' || qtdeCompra==null || qtdeCompra==0){
-		div1.setAttribute('style','color: red; visibility:hidden;');
-		return;
-	}
+<script type="text/javascript" src="js/funcoes.js">
 	
-	if(qtdeCompra>qtde){
-		div1.setAttribute('style','color: red; visibility:visible;');
-		div1.innerHTML='Quantidade indisponível no momento';
-	}else{
-		div1.setAttribute('style','color: red; visibility:visible;');
-		div1.innerHTML='Total: '+qtdeCompra*preco;
-		return;
-	}
-}
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -95,7 +56,7 @@ function calcularValor(){
 		Quantidade:
 		</td>
 		<td>
-		<html:text styleId="qtde" onkeyup="calcularValor();" property="qtde"/>
+		<html:text styleId="qtde" onkeyup="calcularValor();"  onkeypress="mascara(this,soNumeros)" property="qtde"/>
 		</td>
 		<td>
 		<label id="div1"  style="visibility: hidden;"></label>
